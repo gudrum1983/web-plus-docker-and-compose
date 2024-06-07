@@ -1,0 +1,39 @@
+version: '2.27.0'
+
+services:
+  backend:
+    container_name: compose-backend
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    image: compose-backend
+    restart: always
+    ports:
+      - 4000:3001
+    env_file:
+      - .env
+
+
+  frontend:
+    container_name: compose-frontend
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    image: compose-frontend
+    restart: always
+    ports:
+      - 8081:3000
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    env_file:
+      - .env
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    ports:
+      - 8082:8080
+
