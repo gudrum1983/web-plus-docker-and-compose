@@ -13,7 +13,6 @@ services:
     env_file:
       - .env
 
-
   frontend:
     container_name: compose-frontend
     build:
