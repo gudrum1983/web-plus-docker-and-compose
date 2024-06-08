@@ -6,7 +6,7 @@ services:
     build:
       context: backend
       dockerfile: Dockerfile
-    image: compose-backend
+    image: compose-backend-opti
     restart: always
     ports:
       - 4000:3001
@@ -14,14 +14,14 @@ services:
       - .env
 
   frontend:
-    container_name: compose-frontend
+    container_name: compose-frontend-opti
     build:
       context: frontend
       dockerfile: Dockerfile
     image: compose-frontend
     restart: always
     ports:
-      - 8081:3000
+      - 8081:80
 
   postgres:
     container_name: postgres
