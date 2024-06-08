@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'api-service',
-      script: './dist/main.js',
+      script: './dist/src/main.js',
     },
   ],
 };
