@@ -17,7 +17,7 @@ RUN npm run build
 
 # Вторая стадия runner
 # Шаг 1: Выбираю образ nginx и директорию аналогично 1 шагу первой стадии
-FROM nginx:alpine AS runner
+FROM nginx:1.23.1-alpine AS runner
 LABEL authors="Ekaterina"
 WORKDIR /app
 # Шаг 2: Копирую из первой стадии собранный бандл и файл конфигурации
