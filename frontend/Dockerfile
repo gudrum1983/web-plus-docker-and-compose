@@ -20,13 +20,8 @@ RUN npm run build
 FROM nginx:alpine AS runner
 LABEL authors="Ekaterina"
 WORKDIR /app
-# Шаг 2: Копирую из первой стадии собранный бандл
+# Шаг 2: Копирую из первой стадии собранный бандл и файл конфигурации
 COPY --from=builder app/build /usr/share/nginx/html
-# Шаг 3: Установливаю pnpm 9.2.0 и устанавливаю пакеты без дев зависимостей, устанавливаю pm2
-RUN npm install -g pnpm@9.2.0 && pnpm install --frozen-lockfile --omit=dev --no-audit --no-fund \
-    && pnpm i -g pm2
-# Шаг 4: Копирую из первой стадии собранный бандл и файл ecosystem из контекста
-COPY --from=builder app/dist ./dist
 COPY ./nginx/default.conf /etc/nginx/conf.d
 # Шаг 5: Запускаю фронт
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
