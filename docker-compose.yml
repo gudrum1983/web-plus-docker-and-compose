@@ -1,0 +1,56 @@
+version: '2.27.0'
+
+services:
+  backend:
+    container_name: compose-backend-opti
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    image: compose-backend-opti
+    restart: always
+    ports:
+      - 4000:3001
+    env_file:
+      - .env
+    networks:
+      - backend
+
+  frontend:
+    container_name: compose-frontend-opti
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    image: compose-frontend
+    restart: always
+    ports:
+      - 8081:80
+    networks:
+      - frontend
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    volumes:
+      - postgres_data:/data/postgres
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - backend
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    ports:
+      - 8082:8080
+    networks:
+      - backend
+
+volumes:
+  postgres_data:
+
+networks:
+    frontend:
+    backend:
+
+
