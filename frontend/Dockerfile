@@ -9,11 +9,11 @@ WORKDIR /app
 COPY package*.json ./
 # Шаг 3: Установливаю пакеты
 RUN npm ci --no-audit --no-fund
-# Шаг 4: Копируем остальной код
 # Шаг 4: Копирую остальной код
 COPY . ./
 # Шаг 5:  Запускаю сборку бандла
-RUN npm run build
+ARG REACT_APP_API_URL
+RUN REACT_APP_API_URL=$REACT_APP_API_URL npm run build
 
 # Вторая стадия runner
 # Шаг 1: Выбираю образ nginx и директорию аналогично 1 шагу первой стадии
