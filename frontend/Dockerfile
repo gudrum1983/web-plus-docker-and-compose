@@ -17,7 +17,7 @@ RUN REACT_APP_API_URL=$REACT_APP_API_URL npm run build
 
 # Вторая стадия runner
 # Шаг 1: Выбираю образ nginx и директорию аналогично 1 шагу первой стадии
-FROM nginx:1.23.1-alpine AS runner
+FROM nginx:latest AS runner
 LABEL authors="Ekaterina"
 WORKDIR /app
 # Шаг 2: Копирую из первой стадии собранный бандл и файл конфигурации
